@@ -2,26 +2,40 @@ import { GraphQLServer } from 'graphql-yoga'
 
 const typeDefs = `
   type Query {
-    hello: String!
-    name: String!
-    location: String!
-    bio: String!
+    me: User!
+    post: Post!
+  }
+
+  type User {
+    id: ID!
+    username: String!
+    email: String!
+  }
+
+  type Post {
+    id: ID!
+    title: String!
+    body: String!
+    published: Boolean!
   }
 `
 
 const resolvers = {
   Query: {
-    hello() {
-      return `hello!`
+    me() {
+      return {
+        id: `B8522484-83A6-4003-A4A7-5EFA160592A9`,
+        username: `generating-flexibility`,
+        email: `synthesizebluetoothcircuit@gmail.com`
+      }
     },
-    name() {
-      return `Dom is my name!`
-    },
-    location() {
-      return `St. Louis, MO`
-    },
-    bio() {
-      return `My name is Dom and I live in STL.`
+    post() {
+      return {
+        id: `4BDD6144-A0C7-4423-8123-635491908E51`,
+        title: `I like GraphQL`,
+        body: `GraphQL is not a language, it's a specification.`,
+        published: false
+      }
     }
   }
 }
@@ -32,5 +46,5 @@ const server = new GraphQLServer({
 })
 
 server.start(() => {
-  console.log(`[server]: server is running at http://localhost:4000/`)
+  console.log(`[server]: server is running at http://localhost:4000`)
 })
