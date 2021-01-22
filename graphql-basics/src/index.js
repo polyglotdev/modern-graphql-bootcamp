@@ -21,5 +21,5 @@ const server = new GraphQLServer({
 })
 
 server.start(() => {
-  console.log('The server is up!')
+  console.log('The 💻 is at http://localhost:4000')
 })
